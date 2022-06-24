@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Review</title>
+</head>
+<body>
+<h1>All Review</h1>
+{% for review in review_list %}
+    <a href="/review/{{ review.id }}">Title: {{ review.text }}</a>
+    <hr/>
+{% endfor %}
+</body>
+</html>

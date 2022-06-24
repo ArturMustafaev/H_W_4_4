@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Title: {{ movie.title }}</h2>
+<a>{{ film.descriptions }}</a>
+<hr/>
+<p>Directors: {% for director in movies.director.all %} {{ director.name }} {% endfor %}</p>
+<hr/>
+<p>Review: {% for review in movies.review.all %} {{ review.text }} {% endfor %}</p>
+<hr/>
+</body>
+</html>

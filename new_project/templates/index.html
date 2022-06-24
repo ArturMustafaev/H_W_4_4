@@ -1,0 +1,16 @@
+{% extends 'layuot.html' %}
+
+{% block content %}
+
+<h1>Hello World</h1>
+<h2 style="color: {{ color }}">{{ key }}</h2>
+{% for name in list_ %}
+    <p {% if name == 'Django' %} style="color: firebrick" {% endif %} >{{ name }}</p>
+{% endfor %}
+<h1>Привет это мой первый сайт!</h1>
+<h1>Возможно в будущем он будет популярен например как YouTube)</h1>
+<h2 style="color: aqua">Правда мало вероятно)</h2>
+<h1>Пока на этом всё!</h1>
+<h2 style="color: darkslategrey">Date 12.06.2022 15:51</h2>
+
+{% endblock %}

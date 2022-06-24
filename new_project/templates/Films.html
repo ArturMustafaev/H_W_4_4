@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="color: darkred">All Director</h1>
+{% for direct in director_list %}
+    <a href="/directors/{{ direct.id }}">Title: {{ direct.name }}</a>
+    <hr/>
+{% endfor %}
+</body>
+</html>

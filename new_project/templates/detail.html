@@ -1,0 +1,17 @@
+{% extends 'layuot.html' %}
+
+{% block content %}
+
+<h2>Title: {{ product.name}}</h2>
+<p>Price: {{ product.price }}</p>
+<p>Tags: {% for tag in product.tags.all %} <button>{{ tag.name }}</button> {% endfor %}</p>
+<p>Create Date: {{ product.created_at }}</p>
+<h3>All reviews</h3>
+{% for review in reviews %}
+    <p>{{ review.text }}</p>
+    <p>{{ review.author }}</p>
+    <hr/>
+{% endfor %}
+
+
+{% endblock %}
