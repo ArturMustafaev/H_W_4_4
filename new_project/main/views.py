@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from main.models import Product, Category, Director, Movie, Review, Tag, Revieww
+from main.forms import ProductForm, MovieForm, DirectorForm
 
 # Create your views here.
 
@@ -74,3 +75,49 @@ def category_product_filter_view(request, category_id):
         'category_list': Category.objects.all()
     }
     return render(request, 'products.html', context=context)
+
+
+def add_product_view(request):
+    form = ProductForm()
+    if request.method == 'GET':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/products/')
+    return render(request, 'add_product.html', context={
+        'form': form,
+        'category_list': Category.objects.all()
+    })
+
+def add_movie_view(request):
+    if request.method == 'GET':
+        form = MovieForm()
+        return render(request, 'add_movie.html', context={
+            'form': form
+        })
+    elif request.method == 'POST':
+        form = MovieForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/movie/')
+        return render(request, 'add_movie.html', context={
+            'form': form
+        })
+
+
+def add_director_view(request):
+    if request.method == 'GET':
+        form = DirectorForm()
+        return  render(request, 'add_director.html', context={
+            'form': form
+        })
+    elif request.method == 'POST':
+        form = DirectorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return  redirect('/directors/')
+        return  render(request, 'add_director.html', context={
+            'form': form
+        })
+
+
