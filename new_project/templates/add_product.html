@@ -1,10 +1,12 @@
 {% extends 'layuot.html' %}
 
 {% block content %}
-    <h3 style="padding-left: 300px">Создание товара</h3>
-    <form action="/add_product/" method="post" style="padding-left: 300px; padding-right: 300px">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <div class="form-content">
+        <h3>Создание товара</h3>
+        <form action="/add_product/" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
         <input type="submit" class="btn btn-danger" value="Отправить данные">
-    </form>
+        </form>
+    </div>
 {% endblock %}

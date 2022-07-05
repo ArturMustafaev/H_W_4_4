@@ -34,7 +34,9 @@ urlpatterns = [
     path('category/<int:category_id>/products/', views.category_product_filter_view),
     path('add_product/', views.add_product_view),
     path('add_movie/', views.add_movie_view),
-    path('add_director/', views.add_director_view)
+    path('add_director/', views.add_director_view),
+    path('register/', views.register_view),
+    path('login/', views.login_view),
 ]
 
 

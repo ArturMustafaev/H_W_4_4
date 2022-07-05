@@ -1,5 +1,8 @@
 from django import forms
+from django.core.exceptions import ValidationError
+
 from main.models import Product, Movie, Director
+from django.contrib.auth.models import User
 
 
 class ProductForm(forms.ModelForm):
@@ -59,3 +62,44 @@ class DirectorForm(forms.ModelForm):
                 'placeholder': 'Введите имя режиссера'
             })
         }
+
+
+class RegisterForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control'
+    }))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control'
+    }))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control'
+    }))
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        users = User.objects.filter(username=username)
+        if users:
+            raise ValidationError('User already exists!')
+        return username
+
+    def clean_password1(self):
+        password = self.cleaned_data['password']
+        password1 = self.cleaned_data['password1']
+        if password != password1:
+            raise ValidationError('Passwords not match!')
+        return password
+
+    def save(self):
+        """ Create User """
+        username = self.cleaned_data['username']
+        password = self.cleaned_data['password']
+        user = User.objects.create_user(username=username, password=password)
+        return user
+
+class LoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control'
+    }))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control'
+    }))
